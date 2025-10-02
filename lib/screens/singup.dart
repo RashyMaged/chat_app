@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key, this.onTap});
   void register(BuildContext context) async {
     final authService = AuthService();
-    if (_passController.text == _confirmpassController.text) {
+    if (_passController.text.trim() == _confirmpassController.text.trim()) {
       try {
         await authService.signUpwithEmail(
             _emailController.text.trim(), _passController.text.trim());

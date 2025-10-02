@@ -48,9 +48,9 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void sendMessage() async {
-    if (_messageController.text.isNotEmpty) {
+    if (_messageController.text.trim().isNotEmpty) {
       await _chatService.sendMessage(
-          widget.receiverId, _messageController.text);
+          widget.receiverId, _messageController.text.trim());
       _messageController.clear();
     }
   }

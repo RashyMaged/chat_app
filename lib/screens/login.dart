@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   void login(BuildContext context)async{
     final authService=AuthService();
     try{
-       await authService.signInwithEmail(_emailController.text, _passController.text);
+       await authService.signInwithEmail(_emailController.text.trim(), _passController.text.trim());
     }
     catch(e){showDialog(context: context, builder: (context)=>AlertDialog(title: Text(e.toString()),));}
   }
