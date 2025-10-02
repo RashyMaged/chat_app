@@ -10,12 +10,18 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController _confirmpassController = TextEditingController();
   final void Function()? onTap;
   RegisterScreen({super.key, this.onTap});
-  void register(BuildContext context)async {
+  void register(BuildContext context) async {
     final authService = AuthService();
     if (_passController.text == _confirmpassController.text) {
       try {
-       await authService.signUpwithEmail(
-            _emailController.text, _passController.text);
+        await authService.signUpwithEmail(
+            _emailController.text.trim(), _passController.text.trim());
+        showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(
+            title: Text("Account created successfully🎉"),
+          ),
+        );
       } catch (e) {
         showDialog(
             context: context,
@@ -39,7 +45,7 @@ class RegisterScreen extends StatelessWidget {
         body: Center(
             child: Column(children: [
           const SizedBox(height: 50),
-          Image.asset('lib/assets/images/message.png',width:100,height:100),
+          Image.asset('lib/assets/images/message.png', width: 100, height: 100),
           const SizedBox(height: 50),
           Text(
             'Register a new account',
